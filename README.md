@@ -17,6 +17,11 @@ python -m venv .venv
 deactivate
 ```
 
+## Install requirements
+```
+pip install -r requirements.txt
+```
+
 ## Run Portfolio Management Module
 ``` powershell
 python .\main.py
@@ -24,12 +29,12 @@ python .\main.py
 
 ## Testing
 
-## Simple test
+### Simple test
 ``` powershell
 pytest
 ```
 
-## Coverage test
+### Coverage test
 ``` powershell
 pytest test_portfolio.py -v --cov=test_portfolio --cov-report=html
 ```
