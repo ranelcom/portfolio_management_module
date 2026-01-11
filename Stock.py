@@ -1,5 +1,3 @@
-from attrs import define, field
-from attrs.setters import frozen
 from dataclasses import dataclass
 from typing import Literal
 
