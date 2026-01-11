@@ -27,3 +27,16 @@ if __name__ == "__main__":
     orders = portfolio.rebalance({"AAPL": 259.37, "META": 653.06})
     for o in orders:
         print(o.stock.symbol, o.side, o.shares)
+    
+    portfolio2 = Portfolio(
+        positions={AAPL: 0.0},
+        target_allocations={AAPL: 1.0},
+    )
+
+    # Testing rebalance
+    # Let's assume the prices of APPL USD259.37 and META USD 653.06
+    # The "order" will be printed, specifyng which to BUY or SELL and how many units
+    print("Testing portfolio rebalance 2")
+    orders = portfolio2.rebalance({"AAPL": 100.00})
+    for o in orders:
+        print(o.stock.symbol, o.side, o.shares)

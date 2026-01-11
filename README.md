@@ -22,3 +22,14 @@ deactivate
 python .\main.py
 ```
 
+## Testing
+
+## Simple test
+``` powershell
+pytest
+```
+
+## Coverage test
+``` powershell
+pytest test_portfolio.py -v --cov=test_portfolio --cov-report=html
+```
