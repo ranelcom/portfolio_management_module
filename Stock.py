@@ -1,30 +1,33 @@
+from attrs import define, field
+from attrs.setters import frozen
 from dataclasses import dataclass
 from typing import Literal
 
 Side = Literal["BUY", "SELL"]
 
-@dataclass(frozen=True)
 class Stock:
-    """
-    dataclass Stock. Uso un dataclass porque en realidad una accion es un contenedor de datos
-    con un poco de validacion. Metodo current_price.
-    """
-    symbol: str
+    def __init__(self, symbol):
+        self.symbol = symbol.upper().strip()
+        self._current_price = 0.0
 
     def __post_init__(self) -> None:
-        # Normalizamos el símbolo para evitar inconsistencias (meta vs META).
+        # Normalize symbol to avoid inconsistencies (meta vs META).
         object.__setattr__(self, "symbol", self.symbol.upper().strip())
 
+    def get_current_price(self) -> float:
+        return self._current_price
+    
     def current_price(self, last_available_price: float) -> float:
         """
-        Retorna el "precio actual" basado en el último precio disponible.
+        Returns the "current price" based on the last available price.
         """
         if last_available_price <= 0:
             raise ValueError(
-                f"Precio inválido para {self.symbol}: {last_available_price}. "
-                "Debe ser > 0."
+                f"Invalid price for {self.symbol}: {last_available_price}. "
+                "Must be > 0."
             )
-        return float(last_available_price)
+        self._current_price = float(last_available_price)
+        return self._current_price
 
 @dataclass(frozen=True)
 class Order:
